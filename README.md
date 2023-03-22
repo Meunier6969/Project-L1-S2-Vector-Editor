@@ -1,8 +1,8 @@
 # Vector Text-based Editor
 ## About
-This is a CLI Vector image editor written in C, coded for semester 2 at [EFREI Paris](https://eng.efrei.fr/).
+This is a CLI Vector image editor written in C, for semester 2 at [EFREI Paris](https://eng.efrei.fr/).
 
-## Build
+## Build & Run
 good luck lmao i just do it like a cavemen\
 i'll learn cmake someday
 ```powershell
