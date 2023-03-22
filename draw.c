@@ -67,6 +67,8 @@ void print_point_to_buffer(int **buffer, Point *p)
     buffer[y][x] = 1;
 }
 
+// TODO: Need to rewrite this
+// doesn't work with x1 >= x2, flm rewrite this
 void print_line_to_buffer(int **buffer, Line *l)
 {
     float y;

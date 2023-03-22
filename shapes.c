@@ -36,12 +36,16 @@ void print_shape(int **buffer, Shape *shape)
 {
     switch (shape->shape_type)
     {
-    case POINT:
+        case POINT:
+            print_point(shape->ptrShape);
+            break;
+
+        case LINE:
+            print_line(shape->ptrShape);
+            break;
         
-        break;
-    
-    default:
-        break;
+        default:
+            break;
     }
 }
 
