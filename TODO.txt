@@ -1,0 +1,38 @@
+# Layers 
+- Has a name
+- Implemented with _SLLs_
+- Can contain multiple shapes
+- Modification to a layer => Modification to every shape inside
+
+# Op. on Layers
+- Create/delete new layer
+    => Deleting a layer deletes all shapes in it
+- Move a layer in the hierarchy
+- Render invisible/visible
+- (Lock a layer from modification)
+
+# Shapes
+- One layer per shape
+- Each shape is independant
+- Point , Line , Circle , Square , Rectangle , Polygon , Curve?
+
+# Overall
+- Allow the user to enter commands to draw on the screen (done with menu)
+- Multiple windows
+- Bezier curves (optional)
+- Buffer [y position] [x position]
+
+# Drawing on the screen
+- Initialize Buffer
+- Draw all shapes to the buffer in order
+- Print the buffer on the screen
+- Profit
+
+# Functions to implement (according to the subject)
+Point *create_point(int px, int py);
+void delete_point(Point * point);
+void print_point(Point * p);
+
+Line *create_line(Point * p1, Point * p2);
+void delete_line(Line * line);
+void print_line(Line * line);
