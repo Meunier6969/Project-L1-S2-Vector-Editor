@@ -25,14 +25,26 @@ Shape *create_point_shape(int px, int py)
 Shape *create_line_shape(int px1, int py1, int px2, int py2)
 {
     Shape* shp = create_empty_shape(LINE);
+
     Point* p1 = create_point(py1, px1);
     Point* p2 = create_point(py2, px2);
+
     Line* l = create_line(p1, p2);
     shp->ptrShape = l;
     return shp;
 }
 
-void print_shape(int **buffer, Shape *shape)
+Shape *create_square_shape(int px, int py, int length)
+{
+    Shape* shp = create_empty_shape(SQUARE);
+    Point* origin = create_point(py, px);
+
+    Square* s = create_square(origin, length); 
+    shp->ptrShape = s;
+    return shp;
+}
+
+void print_shape(Shape *shape)
 {
     switch (shape->shape_type)
     {
@@ -42,6 +54,10 @@ void print_shape(int **buffer, Shape *shape)
 
         case LINE:
             print_line(shape->ptrShape);
+            break;
+
+        case SQUARE:
+            print_square(shape->ptrShape);
             break;
         
         default:
@@ -89,4 +105,25 @@ void delete_line(Line *line)
 void print_line(Line *line)
 {
     printf("LINE %d %d %d %d\n", line->point_1->point_x, line->point_1->point_y, line->point_2->point_x, line->point_2->point_y);
+}
+
+// SQUARE
+Square *create_square(Point *point, int length)
+{
+    Square* sqr = malloc(sizeof(Square));
+
+    sqr->origin = point;
+    sqr->lenght = length;
+
+    return sqr;
+}
+
+void delete_square(Square *square)
+{
+    free(square);
+}
+
+void print_square(Square *square)
+{
+    printf("SQUARE %d %d %d\n", square->origin->point_x,square->origin->point_y, square->lenght);
 }

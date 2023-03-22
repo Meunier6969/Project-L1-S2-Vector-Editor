@@ -55,6 +55,7 @@ Shape* create_rectangle_shape(int px, int py, int width, int height);
 Shape* create_circle_shape(int px, int py, int radus);
 Shape* create_polygon_shape(int lst[], int n);
 
+void print_shape(Shape *shape); 
 void delete_shape(Shape *shape);
 
 // CIRCLE
@@ -66,3 +67,8 @@ void print_point(Point *p);
 Line* create_line(Point *p1, Point *p2);
 void delete_line(Line *line);
 void print_line(Line *line);
+
+// SQUARE
+Square* create_square(Point *point, int length);
+void delete_square(Square *square);
+void print_square(Square *square);

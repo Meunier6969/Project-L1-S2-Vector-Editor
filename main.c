@@ -21,6 +21,9 @@ int main(int argc, char const *argv[])
     // Eyooooo
     Shape* p1 = create_point_shape(10, 15);
     Shape* l1 = create_line_shape(0, 0, 10, 15);
+    Shape* s1 = create_square_shape(14,2,3);
+
+    print_shape(s1);
 
     print_shape_to_buffer(buffer, p1);
     print_shape_to_buffer(buffer, l1);
