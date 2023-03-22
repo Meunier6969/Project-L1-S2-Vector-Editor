@@ -1,6 +1,6 @@
 // SHAPE DEFINITION
 typedef enum { POINT, LINE, SQUARE, RECTANGLE, CIRCLE, POLYGON } Shape_Type;
-// TEST
+
 typedef struct Shape
 {
     int id;
