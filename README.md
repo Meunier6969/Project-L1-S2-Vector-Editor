@@ -1,4 +1,4 @@
-# Vector Image CLI Editor
+# Vector Text-based Editor
 ## About
 This is a CLI Vector image editor written in C, for semester 2 at [EFREI Paris](https://eng.efrei.fr/).
 
