@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     // Initializing the buffer, put in a seperate function
     initialize_buffer(buffer, WIDTH, HEIGHT);
 
-    // Eyooooo
+    // Eyooooo amogus test
     Shape* p1 = create_point_shape(10, 15);
     Shape* l1 = create_line_shape(0, 0, 10, 15);
     Shape* s1 = create_square_shape(14,2,3);
