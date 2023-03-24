@@ -120,6 +120,40 @@ void print_shape(Shape *shape)
     }
 }
 
+void delete_shape(Shape *shape)
+{
+    switch (shape->shape_type)
+    {
+        case POINT:
+            delete_point(shape->ptrShape);
+            break;
+
+        case LINE:
+            delete_line(shape->ptrShape);
+            break;
+
+        case SQUARE:
+            delete_square(shape->ptrShape);
+            break;
+
+        case RECTANGLE:
+            delete_rectangle(shape->ptrShape);
+            break;
+
+        case CIRCLE:
+            delete_circle(shape->ptrShape);
+            break;
+        
+        case POLYGON:
+            delete_polygon(shape->ptrShape);
+            break;
+        
+        default:
+            break;
+    }
+    free(shape);
+}
+
 // POINTS
 Point *create_point(int py, int px) 
 {
@@ -254,5 +288,6 @@ void print_polygon(Polygon *poly)
     for (size_t i = 0; i < poly->num_of_points; i++)
     {
         printf("%d %d ", poly->points[i]->point_y, poly->points[i]->point_x);
-    }  
+    }
+    printf("\n");
 }
