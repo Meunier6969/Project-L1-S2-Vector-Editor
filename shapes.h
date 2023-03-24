@@ -29,8 +29,8 @@ typedef struct Square
 typedef struct Rectangle
 {
     Point* origin;
-    int lenght;
     int width;
+    int height;
 } Rectangle;
 
 typedef struct Circle 
@@ -52,7 +52,7 @@ Shape* create_point_shape(int px, int py);
 Shape* create_line_shape(int px1, int py1, int px2, int py2);
 Shape* create_square_shape(int px, int py, int length);
 Shape* create_rectangle_shape(int px, int py, int width, int height);
-Shape* create_circle_shape(int px, int py, int radus);
+Shape* create_circle_shape(int px, int py, int radius);
 Shape* create_polygon_shape(int lst[], int n);
 
 void print_shape(Shape *shape); 
@@ -69,6 +69,21 @@ void delete_line(Line *line);
 void print_line(Line *line);
 
 // SQUARE
-Square* create_square(Point *point, int length);
+Square* create_square(Point *origin, int length);
 void delete_square(Square *square);
 void print_square(Square *square);
+
+// RECTANGLE
+Rectangle* create_rectangle(Point *origin, int width, int lenght);
+void delete_rectangle(Rectangle *rect);
+void print_rectangle(Rectangle *rect);
+
+// CIRCLE
+Circle* create_circle(Point *origin, int radius);
+void delete_circle(Circle *circ);
+void print_circle(Circle *circ);
+
+// POLYGON
+Polygon *create_polygon(int n);
+void delete_polygon(Polygon *poly);
+void print_polygon(Polygon *poly);

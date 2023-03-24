@@ -44,6 +44,49 @@ Shape *create_square_shape(int px, int py, int length)
     return shp;
 }
 
+Shape *create_rectangle_shape(int px, int py, int width, int height)
+{
+    Shape *shp = create_empty_shape(RECTANGLE);
+    Point *origin = create_point(py, px);
+
+    Rectangle *r = create_rectangle(origin, width, height);
+    shp->ptrShape = r;
+    return shp;
+}
+
+Shape *create_circle_shape(int px, int py, int radius)
+{
+    Shape *shp = create_empty_shape(CIRCLE);
+    Point *origin = create_point(py, px);
+
+    Circle *c = create_circle(origin, radius);
+    shp->ptrShape = c;
+    return shp;
+}
+
+Shape *create_polygon_shape(int lst[], int n)
+{   
+    if (n%2 == 1)
+    {
+        printf("Number of points must be a multiple of 2.");
+        return NULL;
+    }
+
+    n /= 2; // n becomes the number of Points
+
+    Shape *shp = create_empty_shape(POLYGON);
+    Polygon *p = create_polygon(n);
+
+    p->num_of_points = n;
+    for (size_t i = 0; i < n; i++)
+    {
+        p->points[i] = create_point(lst[2*i], lst[2*i + 1]);
+    }
+
+    shp->ptrShape = p;
+    return shp;
+}
+
 void print_shape(Shape *shape)
 {
     switch (shape->shape_type)
@@ -59,6 +102,18 @@ void print_shape(Shape *shape)
         case SQUARE:
             print_square(shape->ptrShape);
             break;
+
+        case RECTANGLE:
+            print_rectangle(shape->ptrShape);
+            break;
+
+        case CIRCLE:
+            print_circle(shape->ptrShape);
+            break;
+        
+        case POLYGON:
+            print_polygon(shape->ptrShape);
+            break;
         
         default:
             break;
@@ -66,7 +121,7 @@ void print_shape(Shape *shape)
 }
 
 // POINTS
-Point* create_point(int py, int px) 
+Point *create_point(int py, int px) 
 {
     Point* point = malloc(sizeof(Point));
 
@@ -87,7 +142,7 @@ void print_point(Point *p)
 }
 
 // LINES
-Line* create_line(Point *p1, Point *p2) 
+Line *create_line(Point *p1, Point *p2) 
 {
     Line* line = malloc(sizeof(Line));
 
@@ -108,11 +163,11 @@ void print_line(Line *line)
 }
 
 // SQUARE
-Square *create_square(Point *point, int length)
+Square *create_square(Point *origin, int length)
 {
     Square* sqr = malloc(sizeof(Square));
 
-    sqr->origin = point;
+    sqr->origin = origin;
     sqr->lenght = length;
 
     return sqr;
@@ -126,4 +181,78 @@ void delete_square(Square *square)
 void print_square(Square *square)
 {
     printf("SQUARE %d %d %d\n", square->origin->point_x,square->origin->point_y, square->lenght);
+}
+
+// RECTANGLE
+Rectangle *create_rectangle(Point *origin, int width, int height)
+{
+    Rectangle *rect = malloc(sizeof(Rectangle));
+
+    rect->origin = origin;
+    rect->width = width;
+    rect->height = height;
+
+    return rect;
+}
+
+void delete_rectangle(Rectangle *rect)
+{
+    free(rect);
+}
+
+void print_rectangle(Rectangle *rect)
+{
+    printf("RECTANGLE %d %d %d %d\n", rect->origin->point_x, rect->origin->point_y, rect->width, rect->height);
+}
+
+// CIRCLE
+Circle *create_circle(Point *origin, int radius)
+{
+    Circle *circ = malloc(sizeof(Circle));
+
+    circ->origin = origin;
+    circ->radius = radius;
+
+    return circ;
+}
+
+void delete_circle(Circle *circ)
+{
+    free(circ);
+}
+
+void print_circle(Circle *circ)
+{
+    printf("CIRCLE %d %d %d\n", circ->origin->point_x, circ->origin->point_y, circ->radius);
+}
+
+// POLYGON
+Polygon *create_polygon(int num_of_points)
+{
+    Polygon *poly = malloc(sizeof(Polygon));
+    Point **points = malloc(num_of_points * sizeof(Point*));
+
+    poly->num_of_points = num_of_points;
+    poly->points = points;
+
+    return poly;
+}
+
+void delete_polygon(Polygon *poly)
+{
+    for (size_t i = 0; i < poly->num_of_points; i++)
+    {
+        free(poly->points[i]);
+    }
+    free(poly->points);
+    free(poly);
+}
+
+void print_polygon(Polygon *poly)
+{
+    printf("POLYGON ");
+    for (size_t i = 0; i < poly->num_of_points; i++)
+    {
+        printf("%d %d ", poly->points[i]->point_y, poly->points[i]->point_x);
+    }  
 }
