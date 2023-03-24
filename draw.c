@@ -91,3 +91,24 @@ void print_line_to_buffer(int **buffer, Line *l)
         buffer[y_to_print][x] = 1;
     }
 }
+
+// TODO: to do :+1:
+void print_square_to_buffer(int **buffer, Square *s)
+{
+
+}
+
+void print_rectangle_to_buffer(int **buffer, Rectangle *r)
+{
+
+}
+
+void print_circle_to_buffer(int **buffer, Circle *c)
+{
+
+}
+
+void print_polygon_to_buffer(int **buffer, Polygon *p)
+{
+
+}
