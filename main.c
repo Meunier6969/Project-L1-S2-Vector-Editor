@@ -19,16 +19,26 @@ int main(int argc, char const *argv[])
     initialize_buffer(buffer, WIDTH, HEIGHT);
 
     // Eyooooo amogus test
-    Shape* p1 = create_point_shape(10, 15);
-    Shape* l1 = create_line_shape(0, 0, 10, 15);
-    Shape* s1 = create_square_shape(14,2,3);
+    Shape* p1 = create_point_shape(3, 6);
+    Shape* s1 = create_square_shape(2, 4, 6);
+    Shape* r1 = create_rectangle_shape(7, 8, 1, 9);
+    Shape* c1 = create_circle_shape(3, 14, 15);
+    int list[10] = {1,2,3,4,5,6,7,8,9,10};
+    Shape* p2 = create_polygon_shape(list, 10);
 
+    print_shape(p1);
     print_shape(s1);
+    print_shape(r1);
+    print_shape(c1);
+    print_shape(p2);
 
-    print_shape_to_buffer(buffer, p1);
-    print_shape_to_buffer(buffer, l1);
-
-    print_buffer(buffer, HEIGHT, WIDTH);
+    delete_shape(p1);
+    delete_shape(s1);
+    delete_shape(r1);
+    delete_shape(c1);
+    delete_shape(p2);
+    
+    //print_buffer(buffer, HEIGHT, WIDTH);
     
     return 0;
 }
