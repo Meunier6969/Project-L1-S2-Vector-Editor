@@ -27,7 +27,7 @@ void print_buffer(int **buffer, int height, int width)
 
 void print_shape_to_buffer(int **buffer, Shape *shape)
 {
-    switch (shape->shape_type)
+    switch (shape->shapeType)
     {
     case POINT:
         print_point_to_buffer(buffer, shape->ptrShape);
