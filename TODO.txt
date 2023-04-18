@@ -28,11 +28,4 @@
 - Print the buffer on the screen
 - Profit
 
-# Functions to implement (according to the subject)
-Point *create_point(int px, int py);
-void delete_point(Point * point);
-void print_point(Point * p);
-
-Line *create_line(Point * p1, Point * p2);
-void delete_line(Line * line);
-void print_line(Line * line);
+# Menu
