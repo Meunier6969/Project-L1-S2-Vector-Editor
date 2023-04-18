@@ -3,12 +3,12 @@
 #include "shapes.h"
 
 // SHAPE
-Shape* create_empty_shape(Shape_Type shape_type)
+Shape* create_empty_shape(Shape_Type shapeType)
 {
     Shape* shp = (Shape*) malloc(sizeof(Shape));
 
     shp->id = 0; // plus tard on appelera get_next_id();
-    shp->shape_type = shape_type;
+    shp->shapeType = shapeType;
     shp->ptrShape = NULL;
 
     return shp;
@@ -89,7 +89,7 @@ Shape *create_polygon_shape(int lst[], int n)
 
 void print_shape(Shape *shape)
 {
-    switch (shape->shape_type)
+    switch (shape->shapeType)
     {
         case POINT:
             print_point(shape->ptrShape);
@@ -122,7 +122,7 @@ void print_shape(Shape *shape)
 
 void delete_shape(Shape *shape)
 {
-    switch (shape->shape_type)
+    switch (shape->shapeType)
     {
         case POINT:
             delete_point(shape->ptrShape);

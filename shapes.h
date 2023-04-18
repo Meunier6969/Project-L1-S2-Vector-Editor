@@ -4,7 +4,7 @@ typedef enum { POINT, LINE, SQUARE, RECTANGLE, CIRCLE, POLYGON } Shape_Type;
 typedef struct Shape
 {
     int id;
-    Shape_Type shape_type;
+    Shape_Type shapeType;
     void* ptrShape;
 } Shape;
 
@@ -46,7 +46,7 @@ typedef struct Polygon
 } Polygon;
 
 // SHAPE FUNCTIONS
-Shape* create_empty_shape(Shape_Type shape_type);
+Shape* create_empty_shape(Shape_Type shapeType);
 
 Shape* create_point_shape(int px, int py);
 Shape* create_line_shape(int px1, int py1, int px2, int py2);
