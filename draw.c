@@ -58,6 +58,7 @@ void print_shape_to_buffer(int **buffer, Shape *shape)
     }
 }
 
+// Not Done Yet
 void print_point_to_buffer(int **buffer, Point *p)
 {
     int x, y;
@@ -67,8 +68,6 @@ void print_point_to_buffer(int **buffer, Point *p)
     buffer[y][x] = 1;
 }
 
-// TODO: Need to rewrite this
-// doesn't work with x1 >= x2, flm rewrite this
 void print_line_to_buffer(int **buffer, Line *l)
 {
     float y;
@@ -92,7 +91,6 @@ void print_line_to_buffer(int **buffer, Line *l)
     }
 }
 
-// TODO: to do :+1:
 void print_square_to_buffer(int **buffer, Square *s)
 {
 
