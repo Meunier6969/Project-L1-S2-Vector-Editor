@@ -14,15 +14,15 @@ Shape* create_empty_shape(Shape_Type shapeType)
     return shp;
 }
 
-Shape *create_point_shape(int px, int py)
+Shape *create_point_shape(int py, int px)
 {
     Shape* shp = create_empty_shape(POINT);
-    Point* p = create_point(px, py);
+    Point* p = create_point(py, px);
     shp->ptrShape = p;
     return shp;
 }
 
-Shape *create_line_shape(int px1, int py1, int px2, int py2)
+Shape *create_line_shape(int py1, int px1, int py2, int px2)
 {
     Shape* shp = create_empty_shape(LINE);
 
@@ -34,7 +34,7 @@ Shape *create_line_shape(int px1, int py1, int px2, int py2)
     return shp;
 }
 
-Shape *create_square_shape(int px, int py, int length)
+Shape *create_square_shape(int py, int px, int length)
 {
     Shape* shp = create_empty_shape(SQUARE);
     Point* origin = create_point(py, px);
@@ -44,7 +44,7 @@ Shape *create_square_shape(int px, int py, int length)
     return shp;
 }
 
-Shape *create_rectangle_shape(int px, int py, int width, int height)
+Shape *create_rectangle_shape(int py, int px, int width, int height)
 {
     Shape *shp = create_empty_shape(RECTANGLE);
     Point *origin = create_point(py, px);
@@ -54,7 +54,7 @@ Shape *create_rectangle_shape(int px, int py, int width, int height)
     return shp;
 }
 
-Shape *create_circle_shape(int px, int py, int radius)
+Shape *create_circle_shape(int py, int px, int radius)
 {
     Shape *shp = create_empty_shape(CIRCLE);
     Point *origin = create_point(py, px);
@@ -172,7 +172,7 @@ void delete_point(Point *point)
 
 void print_point(Point *p) 
 {
-    printf("POINT %d %d\n", p->point_x, p->point_y);
+    printf("POINT %d %d\n", p->point_y, p->point_x);
 }
 
 // LINES
@@ -193,7 +193,7 @@ void delete_line(Line *line)
 
 void print_line(Line *line)
 {
-    printf("LINE %d %d %d %d\n", line->point_1->point_x, line->point_1->point_y, line->point_2->point_x, line->point_2->point_y);
+    printf("LINE %d %d %d %d\n", line->point_1->point_y, line->point_1->point_x, line->point_2->point_y, line->point_2->point_x);
 }
 
 // SQUARE
@@ -214,7 +214,7 @@ void delete_square(Square *square)
 
 void print_square(Square *square)
 {
-    printf("SQUARE %d %d %d\n", square->origin->point_x,square->origin->point_y, square->lenght);
+    printf("SQUARE %d %d %d\n", square->origin->point_y,square->origin->point_x, square->lenght);
 }
 
 // RECTANGLE
@@ -236,7 +236,7 @@ void delete_rectangle(Rectangle *rect)
 
 void print_rectangle(Rectangle *rect)
 {
-    printf("RECTANGLE %d %d %d %d\n", rect->origin->point_x, rect->origin->point_y, rect->width, rect->height);
+    printf("RECTANGLE %d %d %d %d\n", rect->origin->point_y, rect->origin->point_x, rect->width, rect->height);
 }
 
 // CIRCLE
@@ -257,7 +257,7 @@ void delete_circle(Circle *circ)
 
 void print_circle(Circle *circ)
 {
-    printf("CIRCLE %d %d %d\n", circ->origin->point_x, circ->origin->point_y, circ->radius);
+    printf("CIRCLE %d %d %d\n", circ->origin->point_y, circ->origin->point_x, circ->radius);
 }
 
 // POLYGON
