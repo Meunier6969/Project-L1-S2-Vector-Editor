@@ -22,6 +22,66 @@ int main(int argc, char const *argv[])
     /*************************************/
 
     // Menu
+    Shape* shape_list[100];
+    int currentId = 0;
+    int choice = 0;
+
+    while (1)
+    {
+        choice = simple_menu(currentId);
+
+        switch (choice)
+        {
+        case 1:
+            shape_list[currentId] = enter_point();
+            shape_list[currentId]->id = currentId;
+            currentId++;
+            break;
+        
+        case 2:
+            shape_list[currentId] = enter_line();
+            shape_list[currentId]->id = currentId;
+            currentId++;
+            break;
+        
+        case 3:
+            shape_list[currentId] = enter_square();
+            shape_list[currentId]->id = currentId;
+            currentId++;
+            break;
+        
+        case 4:
+            shape_list[currentId] = enter_rectangle();
+            shape_list[currentId]->id = currentId;
+            currentId++;
+            break;
+        
+        case 5:
+            shape_list[currentId] = enter_circle();
+            shape_list[currentId]->id = currentId;
+            currentId++;
+            break;
+        
+        case 6:
+            shape_list[currentId] = enter_polygon();
+            shape_list[currentId]->id = currentId;
+            currentId++;
+            break;
+        
+        case 7:
+            show_shapes(shape_list, currentId);
+            break;
+
+        case 0:
+            exit(0);
+            break;
+
+        default:
+            break;
+        }
+
+    }
+
 
     //print_buffer(buffer, HEIGHT, WIDTH);
     
