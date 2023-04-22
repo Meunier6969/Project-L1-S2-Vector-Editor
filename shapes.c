@@ -66,14 +66,6 @@ Shape *create_circle_shape(int py, int px, int radius)
 
 Shape *create_polygon_shape(int lst[], int n)
 {   
-    if (n%2 == 1)
-    {
-        printf("Number of points must be a multiple of 2.");
-        return NULL;
-    }
-
-    n /= 2; // n becomes the number of Points
-
     Shape *shp = create_empty_shape(POLYGON);
     Polygon *p = create_polygon(n);
 
