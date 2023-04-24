@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "shapes.h"
 #include "draw.h"
+#include "area.h"
 #include "menu.h"
 
 #define WIDTH 32
@@ -9,81 +10,22 @@
 
 int main(int argc, char const *argv[]) 
 {
-    /***** WILL BE DEFINED IN AREA.C *****/
-    // Allocating the buffer
-    int** buffer;
+    Area* area = create_area(32, 20);
 
-    buffer = malloc(HEIGHT * sizeof(int*));
-    for (size_t i = 0; i < HEIGHT; i++)
-        buffer[i] = malloc(WIDTH * sizeof(int));
+    initialize_area(area);
 
-    // Initializing the buffer, put in a separate function
-    initialize_buffer(buffer, WIDTH, HEIGHT);
-    /*************************************/
+    Shape *pipi = create_point_shape(2, 4);
+    Shape *pipi2 = create_point_shape(6, 9);
+    add_shape_to_area(area, pipi);
+    add_shape_to_area(area, pipi2);
 
-    // Menu
-    Shape* shape_list[100];
-    int currentId = 0;
-    int choice = 0;
+    list_shapes(area);
+    print_area(area);
 
-    while (1)
-    {
-        choice = simple_menu(currentId);
+    delete_area(area);
 
-        switch (choice)
-        {
-        case 1:
-            shape_list[currentId] = enter_point();
-            shape_list[currentId]->id = currentId;
-            currentId++;
-            break;
-        
-        case 2:
-            shape_list[currentId] = enter_line();
-            shape_list[currentId]->id = currentId;
-            currentId++;
-            break;
-        
-        case 3:
-            shape_list[currentId] = enter_square();
-            shape_list[currentId]->id = currentId;
-            currentId++;
-            break;
-        
-        case 4:
-            shape_list[currentId] = enter_rectangle();
-            shape_list[currentId]->id = currentId;
-            currentId++;
-            break;
-        
-        case 5:
-            shape_list[currentId] = enter_circle();
-            shape_list[currentId]->id = currentId;
-            currentId++;
-            break;
-        
-        case 6:
-            shape_list[currentId] = enter_polygon();
-            shape_list[currentId]->id = currentId;
-            currentId++;
-            break;
-        
-        case 7:
-            show_shapes(shape_list, currentId);
-            break;
+    list_shapes(area);
+    // print_area(area);
 
-        case 0:
-            exit(0);
-            break;
-
-        default:
-            break;
-        }
-
-    }
-
-
-    //print_buffer(buffer, HEIGHT, WIDTH);
-    
     return 0;
 }
