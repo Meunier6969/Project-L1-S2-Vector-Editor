@@ -1,3 +1,5 @@
+#pragma once
+
 // SHAPE DEFINITION
 typedef enum { POINT, LINE, SQUARE, RECTANGLE, CIRCLE, POLYGON } Shape_Type;
 
