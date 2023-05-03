@@ -24,3 +24,11 @@ void draw_shapes_to_area(Area *area);
 void print_area(Area *area);
 
 void list_shapes(Area *area);
+
+// DRAWING SHAPE FUNCTIONS
+void draw_point(Area* area, Point* pnt);
+void draw_line(Area* area, Line* line);
+void draw_square(Area* area, Square* squr);
+void draw_rectangle(Area* area, Rectangle* rect);
+void draw_circle(Area* area, Circle* circ);
+void draw_polygon(Area* area, Polygon* plyg);

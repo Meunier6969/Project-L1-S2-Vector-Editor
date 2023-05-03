@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include "area.h"
 
+#define WIDTH 32
+#define HEIGHT 20
+
 Area *create_area(unsigned int width, unsigned int height)
 {
     Area* area = malloc(sizeof(Area));
@@ -61,7 +64,23 @@ void delete_area(Area *area)
 }
 
 void draw_shapes_to_area(Area *area)
-{
+{   
+    Shape* currentShape = NULL;
+
+    for (size_t i = 0; i < area->nb_shape; i++)
+    {
+        currentShape = area->shapes[i];
+        
+        switch (currentShape->shapeType)
+        {
+        case POINT:
+            draw_point(area, currentShape->ptrShape);
+            break;
+        
+        default:
+            break;
+        }
+    }
 }
 
 void print_area(Area *area)
@@ -87,4 +106,36 @@ void list_shapes(Area *area)
         print_shape(area->shapes[i]);
     }
     printf("\n");
+}
+
+// DRAWING SHAPE FUNCTIONS
+void draw_point(Area *area, Point *pnt)
+{
+    if (pnt->point_y >= 0 && pnt->point_y < HEIGHT && pnt->point_x >= 0 && pnt->point_x < WIDTH)
+        area->mat[pnt->point_y][pnt->point_x] = 1;
+}
+
+void draw_line(Area *area, Line *line)
+{
+
+}
+
+void draw_square(Area *area, Square *squr)
+{
+
+}
+
+void draw_rectangle(Area *area, Rectangle *rect)
+{
+
+}
+
+void draw_circle(Area *area, Circle *circ)
+{
+
+}
+
+void draw_polygon(Area *area, Polygon *plyg)
+{
+
 }
