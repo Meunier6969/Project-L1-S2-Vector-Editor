@@ -111,7 +111,7 @@ void list_shapes(Area *area)
 // DRAWING SHAPE FUNCTIONS
 void draw_point(Area *area, Point *pnt)
 {
-    if (pnt->point_y >= 0 && pnt->point_y < HEIGHT && pnt->point_x >= 0 && pnt->point_x < WIDTH)
+    if (is_inbound(area, pnt->point_x, pnt->point_y))
         area->mat[pnt->point_y][pnt->point_x] = 1;
 }
 
@@ -138,4 +138,13 @@ void draw_circle(Area *area, Circle *circ)
 void draw_polygon(Area *area, Polygon *plyg)
 {
 
+}
+
+// UTILITARY
+int is_inbound(Area *area, int x, int y)
+{
+    return x >= 0 && 
+           x < area->width &&
+           y >= 0 && 
+           y < area->height;
 }

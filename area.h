@@ -32,3 +32,7 @@ void draw_square(Area* area, Square* squr);
 void draw_rectangle(Area* area, Rectangle* rect);
 void draw_circle(Area* area, Circle* circ);
 void draw_polygon(Area* area, Polygon* plyg);
+
+// UTILITARY
+int is_inbound(Area *area, int x, int y);
+
