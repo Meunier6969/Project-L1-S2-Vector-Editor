@@ -50,11 +50,11 @@ typedef struct Polygon
 // SHAPE FUNCTIONS
 Shape* create_empty_shape(Shape_Type shapeType);
 
-Shape* create_point_shape(int px, int py);
-Shape* create_line_shape(int px1, int py1, int px2, int py2);
-Shape* create_square_shape(int px, int py, int length);
-Shape* create_rectangle_shape(int px, int py, int width, int height);
-Shape* create_circle_shape(int px, int py, int radius);
+Shape* create_point_shape(int py, int px);
+Shape* create_line_shape(int py1, int px1, int py2, int px2);
+Shape* create_square_shape(int py, int px, int length);
+Shape* create_rectangle_shape(int py, int px, int width, int height);
+Shape* create_circle_shape(int py, int px, int radius);
 Shape* create_polygon_shape(int lst[], int n);
 
 void print_shape(Shape *shape); 
