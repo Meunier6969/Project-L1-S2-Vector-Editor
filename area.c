@@ -181,28 +181,79 @@ void draw_square(Area *area, Square *sqr)
     Oy = sqr->origin->point_y;
     len = sqr->lenght;
 
-    for (size_t i = 0; i < len; i++) // Left and right side
+    for (size_t i = 0; i < len; i++)
     {
-        draw_pixel(area, Oy+i, Ox);
-        draw_pixel(area, Oy+i, Ox+len-1);
-    }
+        draw_pixel(area, Oy + i, Ox); // Left and right side
+        draw_pixel(area, Oy + i, Ox + len - 1);
 
-    for (size_t i = 0; i < len; i++) // Top and bottom
-    {
-        draw_pixel(area, Oy, Ox+i);
-        draw_pixel(area, Oy+len-1, Ox+i);
+        draw_pixel(area, Oy, Ox + i); // Top and bottom 
+        draw_pixel(area, Oy + len - 1, Ox + i);
     }
-    
 }
 
 void draw_rectangle(Area *area, Rectangle *rect)
 {
+    int Ox, Oy, width, height
+    ;
+    Ox = rect->origin->point_x;
+    Oy = rect->origin->point_y;
+    width = rect->width;
+    height = rect->height;
+
+    for (size_t i = 0; i < height; i++)
+    {
+        draw_pixel(area, Oy + i, Ox); // Left and right side
+        draw_pixel(area, Oy + i, Ox + width - 1);
+    }
+
+    for (size_t i = 0; i < width; i++)
+    {
+        draw_pixel(area, Oy, Ox + i); // Top and bottom
+        draw_pixel(area, Oy + height - 1, Ox + i);
+    }
 
 }
 
 void draw_circle(Area *area, Circle *circ)
 {
+    int Ox, Oy;
+    Ox = circ->origin->point_x;
+    Oy = circ->origin->point_y;
 
+    int x, y, d;
+    x = 0;
+    y = circ->radius;
+    d = circ->radius - 1;
+
+    while (y >= x)
+    {
+        draw_pixel(area, Oy + y, Ox + x);
+        draw_pixel(area, Oy + x, Ox + y);
+        draw_pixel(area, Oy - y, Ox + x);
+        draw_pixel(area, Oy - x, Ox + y);
+        draw_pixel(area, Oy + y, Ox - x);
+        draw_pixel(area, Oy + x, Ox - y);
+        draw_pixel(area, Oy - y, Ox - x);
+        draw_pixel(area, Oy - x, Ox - y);
+
+        if (d >= 2 * x)
+        {
+            d = d - 2*x - 1;
+            x++;
+        }
+        else if (d < 2 * (circ->radius - y))
+        {
+            d = d + 2*x - 1;
+            y--;
+        }
+        else
+        {
+            d = d + 2*(y-x-1);
+            y--;
+            x++;
+        }
+        
+    }
 }
 
 void draw_polygon(Area *area, Polygon *plyg)
