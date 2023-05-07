@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "area.h"
 
 #define WIDTH 32
@@ -77,6 +78,26 @@ void draw_shapes_to_area(Area *area)
             draw_point(area, currentShape->ptrShape);
             break;
         
+        case LINE:
+            draw_line(area, currentShape->ptrShape);
+            break;
+
+        case SQUARE:
+            draw_square(area, currentShape->ptrShape);
+            break;
+
+        case RECTANGLE:
+            draw_rectangle(area, currentShape->ptrShape);
+            break;
+
+        case CIRCLE:
+            draw_circle(area, currentShape->ptrShape);
+            break;
+
+        case POLYGON:
+            draw_polygon(area, currentShape->ptrShape);
+            break;
+
         default:
             break;
         }
@@ -111,18 +132,67 @@ void list_shapes(Area *area)
 // DRAWING SHAPE FUNCTIONS
 void draw_point(Area *area, Point *pnt)
 {
-    if (is_inbound(area, pnt->point_x, pnt->point_y))
-        area->mat[pnt->point_y][pnt->point_x] = 1;
+    draw_pixel(area, pnt->point_y, pnt->point_x);
 }
 
 void draw_line(Area *area, Line *line)
-{
+{ // Using DDA [https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)]
+    Point *p1 = line->point_1;
+    Point *p2 = line->point_2;
 
+    float dx, dy;
+    dx = p2->point_x - p1->point_x;
+    dy = p2->point_y - p1->point_y;
+
+    int steps;
+    if (dx > dy)
+        steps = abs(dx);
+    else
+        steps = abs(dy);
+
+    float xInc, yInc;
+    xInc = dx / (float)steps;
+    yInc = dy / (float)steps;
+
+    float x, y;
+    x = p1->point_x;
+    y = p1->point_y;
+
+    int xD, yD;
+    xD = x;
+    yD = y;
+
+    for (size_t i = 0; i < steps; i++)
+    {
+        draw_pixel(area, yD, xD);
+
+        x = x + xInc;
+        y = y + yInc;
+
+        xD = round(x);
+        yD = round(y);
+    }
 }
 
-void draw_square(Area *area, Square *squr)
+void draw_square(Area *area, Square *sqr)
 {
+    int Ox, Oy, len;
+    Ox = sqr->origin->point_x;
+    Oy = sqr->origin->point_y;
+    len = sqr->lenght;
 
+    for (size_t i = 0; i < len; i++) // Left and right side
+    {
+        draw_pixel(area, Oy+i, Ox);
+        draw_pixel(area, Oy+i, Ox+len-1);
+    }
+
+    for (size_t i = 0; i < len; i++) // Top and bottom
+    {
+        draw_pixel(area, Oy, Ox+i);
+        draw_pixel(area, Oy+len-1, Ox+i);
+    }
+    
 }
 
 void draw_rectangle(Area *area, Rectangle *rect)
@@ -141,10 +211,10 @@ void draw_polygon(Area *area, Polygon *plyg)
 }
 
 // UTILITARY
-int is_inbound(Area *area, int x, int y)
+void draw_pixel(Area* area, int y, int x)
 {
-    return x >= 0 && 
-           x < area->width &&
-           y >= 0 && 
-           y < area->height;
+    int is_inbound = x >= 0 && x < area->width && y >= 0 && y < area->height;
+    // Check if pixel is supposed to be drawn or not
+    if (is_inbound)
+        area->mat[y][x] = 1;
 }
