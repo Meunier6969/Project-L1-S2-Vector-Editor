@@ -145,7 +145,7 @@ void draw_line(Area *area, Line *line)
     dy = p2->point_y - p1->point_y;
 
     int steps;
-    if (dx > dy)
+    if (abs(dx) > abs(dy))
         steps = abs(dx);
     else
         steps = abs(dy);
@@ -258,7 +258,26 @@ void draw_circle(Area *area, Circle *circ)
 
 void draw_polygon(Area *area, Polygon *plyg)
 {
+    Point *p1, *p2;
+    p1 = NULL;
+    p2 = NULL;
+    
+    Line *currentLine = create_line(p1, p2);
 
+    for (size_t i = 0; i < plyg->num_of_points-1; i++)
+    {
+
+        p1 = plyg->points[i];
+        p2 = plyg->points[i+1];
+        
+        currentLine = create_line(p1, p2);
+
+        draw_line(area, currentLine);
+    }
+    
+    free(p1);
+    free(p2); 
+    free(currentLine);
 }
 
 // UTILITARY
