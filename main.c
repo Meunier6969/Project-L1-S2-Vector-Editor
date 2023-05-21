@@ -7,16 +7,19 @@
 
 int main(int argc, char const *argv[]) 
 {
-    // Area* area = create_area(32, 20);
-    // initialize_area(area);
+    Area* area = create_area(32, 20);
+    initialize_area(area);
 
-    // Command* cmd = create_command();
-    // read_from_stdin(cmd);
-    // exec_command(cmd);
+    Command* cmd = NULL;
+    while (1)
+    {
+        cmd = create_command();
+
+        read_from_stdin(cmd);
+        exec_command(cmd, area);
+    }
 
     // delete_area(area);
-
-    printf("%d\n", is_number(NULL));
 
     return 0;
 }
