@@ -2,7 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+
 #include "command.h"
+#include "menu.h"
+#include "area.h"
+#include "shapes.h"
 
 Command *create_command()
 {
@@ -11,9 +15,9 @@ Command *create_command()
     cmd->name = malloc(STR_MAX * sizeof(char));
 
     cmd->int_size = 0;
-    cmd->int_params = malloc(PARA_MAX * sizeof(int));
+    cmd->int_params = calloc(PARA_MAX, sizeof(int));
 
-    cmd->str_size = 0; // i have no idea what is this
+    cmd->str_size = 0; // i have ~~no~~ one (1) idea what is this
     cmd->str_params = malloc(PARA_MAX * sizeof(char));
 
     return cmd;
@@ -21,6 +25,7 @@ Command *create_command()
 
 void add_str_param(Command *cmd, char *p)
 {
+    cmd->str_size++;
     // ???
 }
 
@@ -45,7 +50,7 @@ void free_cmd(Command *cmd)
     free(cmd);
 }
 
-int exec_command(Command *cmd)
+int exec_command(Command *cmd, Area* area)
 {
     if (strcmp(cmd->name, "clear") == 0)
     {
@@ -58,37 +63,50 @@ int exec_command(Command *cmd)
     }
     else if (strcmp(cmd->name, "point") == 0)
     {
-
+        Shape *p = create_point_shape(cmd->int_params[0], cmd->int_params[1]);
+        add_shape_to_area(area, p);
     }
     else if (strcmp(cmd->name, "line") == 0)
     {
+        printf("create line\n");
     }
     else if (strcmp(cmd->name, "circle") == 0)
     {
+        printf("create circle\n");
     }
     else if (strcmp(cmd->name, "square") == 0)
     {
+        printf("create square\n");
     }
     else if (strcmp(cmd->name, "rectangle") == 0)
     {
+        printf("create rectangle\n");
     }
     else if (strcmp(cmd->name, "polygon") == 0)
     {
+        printf("create polygon\n");
     }
     else if (strcmp(cmd->name, "plot") == 0)
     {
+        draw_shapes_to_area(area);
+        print_area(area);
     }
     else if (strcmp(cmd->name, "list") == 0)
     {
+        list_shapes(area);
     }
     else if (strcmp(cmd->name, "delete") == 0)
     {
+        printf("delete a shape by id\n");
     }
     else if (strcmp(cmd->name, "erase") == 0)
     {
+        initialize_area(area);
+        delete_all_shpaes(area);
     }
     else if (strcmp(cmd->name, "help") == 0)
     {
+        printf("ああああああああああああああああああああああああああああ\n");
     }
     else
     {
@@ -97,8 +115,11 @@ int exec_command(Command *cmd)
     return 0;
 }
 
+// TO FIX: After using erase, creating a point make the program crash
+
 void read_from_stdin(Command *cmd)
 {
+    clear_command(cmd);
     char* command = malloc(STR_MAX * sizeof(char));
     printf("> ");
     fgets(command, STR_MAX, stdin);
@@ -112,9 +133,24 @@ void read_from_stdin(Command *cmd)
     {
         token = strtok(NULL, " -");
         if (token == NULL) break;
-        if (is_number(token)) add_int_param(cmd, atoi(token)); // convert token to int
-        add_str_param(cmd, token); // the type is wwong D: nweed to fwix uwu
+
+        if (is_number(token)) 
+        {   
+            add_int_param(cmd, atoi(token));
+        }
+
+        else add_str_param(cmd, token);
     }
+}
+
+void clear_command(Command *cmd)
+{
+    cmd->name = NULL;
+    cmd->int_size = 0;
+    cmd->int_params = NULL;
+    
+    cmd->str_size = 0;
+    cmd->str_params = NULL;
 }
 
 int is_number(char* s)
