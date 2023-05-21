@@ -1,3 +1,5 @@
+#pragma once
+
 #include "shapes.h"
 
 #define SHAPE_MAX 100
@@ -24,6 +26,7 @@ void draw_shapes_to_area(Area *area);
 void print_area(Area *area);
 
 void list_shapes(Area *area);
+void delete_all_shpaes(Area *area);
 
 // DRAWING SHAPE FUNCTIONS
 void draw_point(Area* area, Point* pnt);

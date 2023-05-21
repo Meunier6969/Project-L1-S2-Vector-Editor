@@ -129,6 +129,16 @@ void list_shapes(Area *area)
     printf("\n");
 }
 
+void delete_all_shpaes(Area *area)
+{
+    for (size_t i = 0; i < area->nb_shape; i++)
+    {
+        delete_shape(area->shapes[i]);
+    }
+    area->shapes = NULL;
+    area->nb_shape = 0;
+}
+
 // DRAWING SHAPE FUNCTIONS
 void draw_point(Area *area, Point *pnt)
 {
@@ -258,11 +268,10 @@ void draw_circle(Area *area, Circle *circ)
 
 void draw_polygon(Area *area, Polygon *plyg)
 {
+    Line *currentLine = NULL;
     Point *p1, *p2;
     p1 = NULL;
     p2 = NULL;
-    
-    Line *currentLine = create_line(p1, p2);
 
     for (size_t i = 0; i < plyg->num_of_points-1; i++)
     {
