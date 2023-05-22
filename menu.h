@@ -1,3 +1,5 @@
+#include "shapes.h"
+
 int simple_menu(int currentId);
 
 Shape *enter_point();
