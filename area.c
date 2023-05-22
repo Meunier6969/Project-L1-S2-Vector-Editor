@@ -54,6 +54,8 @@ void erase_area(Area *area)
 void delete_area(Area *area)
 {
     erase_area(area);
+
+    delete_all_shapes(area);
     free(area->shapes);
 
     for (size_t i = 0; i < area->height; i++)
@@ -129,7 +131,7 @@ void list_shapes(Area *area)
     printf("\n");
 }
 
-void delete_all_shpaes(Area *area)
+void delete_all_shapes(Area *area)
 {
     for (size_t i = 0; i < area->nb_shape; i++)
     {
