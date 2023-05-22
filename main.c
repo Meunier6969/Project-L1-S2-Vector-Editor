@@ -10,10 +10,10 @@ int main(int argc, char const *argv[])
     Area* area = create_area(32, 20);
     initialize_area(area);
 
-    Command* cmd = NULL;
+    Command *cmd = create_command();
     while (1)
     {
-        cmd = create_command();
+        clear_command(cmd);
 
         read_from_stdin(cmd);
         exec_command(cmd, area);

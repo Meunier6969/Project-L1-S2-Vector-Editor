@@ -5,7 +5,6 @@ typedef enum { POINT, LINE, SQUARE, RECTANGLE, CIRCLE, POLYGON } Shape_Type;
 
 typedef struct Shape
 {
-    int id;
     Shape_Type shapeType;
     void* ptrShape;
 } Shape;

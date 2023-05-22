@@ -7,7 +7,6 @@ Shape* create_empty_shape(Shape_Type shapeType)
 {
     Shape* shp = (Shape*) malloc(sizeof(Shape));
 
-    shp->id = 0; // plus tard on appelera get_next_id();
     shp->shapeType = shapeType;
     shp->ptrShape = NULL;
 

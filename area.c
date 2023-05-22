@@ -131,13 +131,26 @@ void list_shapes(Area *area)
     printf("\n");
 }
 
+void delete_shape_from_area(Area *area, int id)
+{
+    if (id >= area->nb_shape)
+        return;
+
+    area->nb_shape--;
+
+    for (size_t i = id; i < area->nb_shape; i++)
+    {
+        area->shapes[i] = area->shapes[i+1];
+    }
+    
+}
+
 void delete_all_shapes(Area *area)
 {
     for (size_t i = 0; i < area->nb_shape; i++)
     {
         delete_shape(area->shapes[i]);
     }
-    area->shapes = NULL;
     area->nb_shape = 0;
 }
 

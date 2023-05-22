@@ -7,11 +7,11 @@ typedef struct command
 {
     char *name;
 
-    int int_size;
-    int *int_params;
+    size_t int_size;
+    int* int_params;
 
-    int str_size;
-    char *str_params;
+    size_t str_size;
+    char* str_params;
 } Command;
 
 Command *create_command();

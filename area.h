@@ -26,6 +26,7 @@ void draw_shapes_to_area(Area *area);
 void print_area(Area *area);
 
 void list_shapes(Area *area);
+void delete_shape_from_area(Area *area, int id);
 void delete_all_shapes(Area *area);
 
 // DRAWING SHAPE FUNCTIONS
