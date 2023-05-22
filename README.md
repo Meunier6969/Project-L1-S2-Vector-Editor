@@ -3,8 +3,8 @@
 This is a CLI Vector image editor written in C, for semester 2 at [EFREI Paris](https://eng.efrei.fr/).
 
 ## Build & Run
-good luck lmao i just do it like a cavemen\
-i'll learn cmake someday
+First, make sure you have GCC installed.
+Then run :
 ```powershell
 gcc *.c -Wall -o "out.exe"
 .\out.exe
