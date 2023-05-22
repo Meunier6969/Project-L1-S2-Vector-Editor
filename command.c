@@ -4,7 +4,6 @@
 #include <ctype.h>
 
 #include "command.h"
-#include "menu.h"
 #include "area.h"
 #include "shapes.h"
 
