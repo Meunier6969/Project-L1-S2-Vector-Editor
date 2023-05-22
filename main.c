@@ -22,10 +22,9 @@ int main(int argc, char const *argv[])
     Command *cmd = create_command();
     while (1)
     {
-        clear_command(cmd);
-
         read_from_stdin(cmd);
         exec_command(cmd, area);
+        clear_command(cmd);
     }
 
     return 0;
