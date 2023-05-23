@@ -15,7 +15,8 @@ Command *create_command()
 
     cmd->int_size = 0;
     cmd->int_params = malloc(PARA_MAX * sizeof(int));
-    cmd->str_size = 0; // i have ~~no~~ one (1) idea what is this
+
+    cmd->str_size = 0;
     cmd->str_params = malloc(PARA_MAX * sizeof(char));
 
     return cmd;
@@ -24,7 +25,7 @@ Command *create_command()
 void add_str_param(Command *cmd, char *p)
 {
     cmd->str_size++;
-    // ???
+    // This function is never actually used
 }
 
 void add_int_param(Command *cmd, int p)
@@ -41,8 +42,6 @@ void free_cmd(Command *cmd)
     free(cmd->int_params);
 
     cmd->str_size = 0;
-    // for (size_t i = 0; i < PARA_MAX; i++)
-    
     free(cmd->str_params);
 
     free(cmd);
@@ -64,6 +63,7 @@ int exec_command(Command *cmd, Area* area)
     }
     else if (strcmp(cmd->name, "exit") == 0)
     {
+        free_cmd(cmd);
         delete_area(area);
         exit(0);
     }
