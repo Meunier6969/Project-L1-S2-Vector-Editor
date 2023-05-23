@@ -11,8 +11,11 @@ int main(int argc, char const *argv[])
     printf("___ CLI Vector Editor ___\n");
     printf("Welcome to this CLI Vector Editor !\n");
     printf("Please enter the size of your canvas (width height): \n");
-    scanf("%d %d", &width, &height);
-    fflush(stdin);
+    do
+    {
+        printf("Please enter the size of your canvas (width height): \n");
+        scanf("%d %d", &width, &height);
+    } while (width < 1 || height < 1);
 
     Area *area = create_area(width, height);
     initialize_area(area);

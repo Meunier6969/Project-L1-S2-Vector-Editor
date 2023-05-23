@@ -133,7 +133,7 @@ void list_shapes(Area *area)
 
 void delete_shape_from_area(Area *area, int id)
 {
-    if (id >= area->nb_shape)
+    if (id >= area->nb_shape || id < 0)
         return;
 
     area->nb_shape--;
